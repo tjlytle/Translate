@@ -1,0 +1,25 @@
+{
+    "name": "tjlytle/translate",
+    "description": "Simple Translation By SMS",
+    "minimum-stability": "dev",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Tim Lytle",
+            "email": "tim@timlytle.net"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "4.1.2",
+        "pimple/pimple": "v2.1.0",
+        "respect/rest": "0.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Translate\\": "src/"
+        },
+        "classmap": [
+            "config.php"
+        ]
+    }
+}

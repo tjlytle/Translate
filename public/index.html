@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="translationApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="//www.nexmo.com/favicon.ico">
+
+  <title>Translation On Any Phone</title>
+
+  <link href="custom.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-controller="TranslateCtrl">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Translation for any phone.</h2>
+      <ul class="nav nav-pills nav-justified" role="tablist" id="wizard">
+        <li class="active"><a href="#source" role="pill" data-toggle="pill">From</a></li>
+        <li><a href="#target" role="tab" data-toggle="pill">To</a></li>
+        <li><a href="#number" role="tab" data-toggle="pill">Phone</a></li>
+        <li><a href="#settings" role="tab" data-toggle="pill">Done</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="source">
+          <div class="step">
+            <p>What language would you like to translate from? </p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <select ng-click="setSource()" ng-model="settings.source" class="form-control" id="source">
+                <option value="">Select Language</option>
+                <option ng-repeat="(lang, name) in sources" value="{{lang}}">{{name}}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="target">
+          <div class="step">
+            <p>What language would you like the text translated to?</p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <select ng-click="next()" ng-model="settings.target" class="form-control" id="target">
+                <option value="">Select Language</option>
+                <option ng-repeat="(lang, name) in targets" value="{{lang}}">{{name}}</option>
+              </select>
+            </div>
+            <div></div>
+          </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="number">
+          <div class="step">
+            <p>What mobile number - including country code - will you send the messages from?</p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+              <input ng-model="settings.number" type="phone" class="form-control last" placeholder="Your Mobile Number">
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary" ng-click="next()">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="settings">
+          <div class="step">
+            Send an SMS message to {{saved.inbound}} and get the translation as a reply. Update your settings here
+            at any time. <span ng-show="saved.voice"><b>Bonus</b>: Dial that number to have the last translation
+            read back to you.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- /row -->
+</div> <!-- /container -->
+
+<div class="footer">
+  <div class="container">
+    <p class="text-muted">
+      A <a href="http://nexmo.com">Nexmo</a> example application, by <a href="https://twitter.com/tjlytle">@tjlytle</a>.
+    </p>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
