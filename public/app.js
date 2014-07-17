@@ -6,7 +6,6 @@ var translationApp = angular.module('translationApp', []);
 translationApp.controller('TranslateCtrl', function($scope, $http){
     $http.get('api.php/lang/source').success(function(data){
         $scope.sources = data;
-        console.log(data);
     });
 
     $scope.next = function(){
@@ -23,11 +22,10 @@ translationApp.controller('TranslateCtrl', function($scope, $http){
         //update the possible targets
         $http.get('api.php/lang/target/' + source).success(function(data){
             $scope.targets = data;
-            console.log(data);
+            //move to the next tab
+            $scope.next();
         });
 
-        //move to the next tab
-        $scope.next();
     };
 
     $scope.save = function(){
@@ -38,7 +36,6 @@ translationApp.controller('TranslateCtrl', function($scope, $http){
         };
 
         if(!number || !data.source || !data.target){
-            console.log('cant save');
             return;
         }
 
@@ -49,7 +46,6 @@ translationApp.controller('TranslateCtrl', function($scope, $http){
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
             $scope.saved = data;
-            console.log(data);
         });
     };
 });
